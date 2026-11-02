@@ -663,6 +663,53 @@
           scroll-behavior: auto !important;
         }
       }
+      /* PDF button only shows on the deployed site, never inside the preview frame */
+      #pdf{display:none}
+      html.can-print #pdf{display:inline-block}
+
+      /* print / PDF: compact A4 resume in light colors */
+      @page{size:A4;margin:12mm 12mm}
+      @media print{
+        :root,:root[data-theme="dark"],:root:not([data-theme="light"]){
+          --bg:#fff;--surface:#fff;--fg:#0f1a2e;--muted:#3e4a60;--line:#cfd6d3;--accent:#066a72;--accent-ink:#fff;--gold:#8a5a14;--chip:#e9efed;color-scheme:light}
+        html{font-size:12.5px}
+        body{background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+        html[data-lang="en"] body{line-height:1.45}
+        .nav,.hero canvas,.cta,.facts,.tools,.visit,.sh .mono,footer,.kicker b{display:none!important}
+        .wrap{max-width:none;padding-inline:0}
+        .hero{border:0}
+        .hero .wrap{padding-block:0 8px}
+        .rise{animation:none!important}
+        h1{font-size:34px;margin:6px 0 4px;line-height:1.25}
+        .kicker{border:0;background:none;padding:0;font-size:12px}
+        .lead{font-size:14px;margin:0 0 4px;max-width:none}
+        section.s{padding-block:12px;border-bottom:1px solid var(--line)}
+        .sh{margin-bottom:10px}
+        .sh h2{font-size:19px}
+        .split{grid-template-columns:1.6fr 1fr;gap:20px}
+        .edu{padding:12px;break-inside:avoid}
+        .prog{display:none}
+        .card{padding:12px 14px;gap:16px;break-inside:avoid;transform:none!important;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr)}
+        .card h3{font-size:16px;margin:2px 0 6px}
+        .card li{font-size:11.5px;line-height:1.45}
+        .proj{gap:10px}
+        .chips{margin-top:8px}
+        .chip{font-size:10.5px;padding:1px 8px}
+        .grp{padding:12px;break-inside:avoid}
+        .grp .chip{font-size:11px;padding:2px 9px}
+        .skills{gap:10px}
+        .row{padding-block:5px;font-size:12px}
+        .ct{padding:10px 12px;break-inside:avoid}
+        .ct button{display:none}
+        .ct a,.ct span.v{font-size:12px}
+        #contact .sh{margin-bottom:8px}
+        .skills{grid-template-columns:repeat(3,minmax(0,1fr))}
+        .contact{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+        .ct{padding:8px 10px}
+        .ct a,.ct span.v{font-size:10.5px}
+        section.s{padding-block:10px}
+        a{text-decoration:none}
+      }
     </style>
   </head>
   <body>
@@ -687,6 +734,7 @@
           >
         </nav>
         <div class="tools">
+          <button id="pdf" type="button" aria-label="PDF">PDF</button>
           <button id="lang" type="button" aria-label="Language">
             <span class="fa">EN</span><span class="en">فارسی</span>
           </button>
@@ -1230,6 +1278,14 @@
             : matchMedia("(prefers-color-scheme:dark)").matches;
           root.setAttribute("data-theme", dark ? "light" : "dark");
         });
+        try {
+          if (window.self === window.top) {
+            root.classList.add("can-print");
+            document.getElementById("pdf").addEventListener("click", function () {
+              window.print();
+            });
+          }
+        } catch (e) {}
         document.querySelectorAll("[data-copy]").forEach(function (b) {
           b.addEventListener("click", function () {
             var el = document.querySelector(b.getAttribute("data-copy")),
