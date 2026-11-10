@@ -78,7 +78,8 @@ html.can-print #pdf{display:inline-flex}
 @media (min-width:901px){.pal-ico{display:none}}
 
 /* hero */
-.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(55% 70% at 18% 30%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 70%),radial-gradient(50% 60% at 88% 85%,color-mix(in srgb,var(--ai) 12%,transparent),transparent 70%)}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(36px,6vw,80px) clamp(32px,5vw,56px)}
 @media (max-width:920px){.hero .wrap{grid-template-columns:1fr}}
@@ -122,7 +123,7 @@ h1 em{font-style:normal;color:var(--accent)}
 @keyframes blink{50%{opacity:0}}
 
 /* sections */
-section.s{padding-block:clamp(52px,8vw,92px);border-bottom:1px solid var(--line)}
+section.s{padding-block:clamp(40px,6vw,72px)}
 .sh{display:flex;align-items:baseline;gap:16px;margin-bottom:30px;flex-wrap:wrap}
 .sh h2{font-family:var(--display);font-size:clamp(28px,4vw,42px);line-height:1.3;margin:0;font-weight:800;letter-spacing:-.01em}
 html[data-lang="fa"] .sh h2{letter-spacing:0}
@@ -283,13 +284,79 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}html.js .rv:not(.in){transform:none}}
 
+
+/* section band: a row of eight-point stars between sections */
+.band{height:22px;background:var(--accent);opacity:.32;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='22' viewBox='0 0 44 22'%3E%3Cg fill='none' stroke='black' stroke-width='1.4'%3E%3Crect x='15' y='4' width='14' height='14'/%3E%3Crect x='15' y='4' width='14' height='14' transform='rotate(45 22 11)'/%3E%3C/g%3E%3C/svg%3E") repeat-x center/44px 22px;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='22' viewBox='0 0 44 22'%3E%3Cg fill='none' stroke='black' stroke-width='1.4'%3E%3Crect x='15' y='4' width='14' height='14'/%3E%3Crect x='15' y='4' width='14' height='14' transform='rotate(45 22 11)'/%3E%3C/g%3E%3C/svg%3E") repeat-x center/44px 22px}
+
+/* bottom tab bar (phones) */
+.tabbar{display:none}
+@media (max-width:900px){
+  .tabbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;inset-inline:0;bottom:0;z-index:55;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;font-size:11.5px;color:var(--muted);padding:6px 4px;border-radius:12px;line-height:1.3;transition:color .2s,background .2s}
+  .tabbar a svg{width:21px;height:21px}
+  .tabbar a[aria-current="true"]{color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+  body{padding-bottom:calc(68px + env(safe-area-inset-bottom,0px))}
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .totop{bottom:calc(84px + env(safe-area-inset-bottom,0px))!important}
+  .band{height:18px;opacity:.26}
+}
+
+/* back to top with scroll ring */
+.totop{position:fixed;inset-inline-end:18px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:46px;height:46px;padding:0;border:0;border-radius:50%;background:var(--surface);box-shadow:var(--shadow);cursor:pointer;z-index:54;display:grid;place-items:center;color:var(--accent);visibility:hidden;opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s,visibility 0s .25s}
+.totop.show{visibility:visible;opacity:1;transform:none;transition:opacity .25s,transform .25s}
+.totop .ring{position:absolute;inset:0;transform:rotate(-90deg)}
+.totop .trk{fill:none;stroke:var(--line);stroke-width:3}
+.totop .prg{fill:none;stroke:var(--accent);stroke-width:3;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100}
+.totop .arr{position:relative}
+
+/* skills usage matrix */
+.mxwrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(14px,2.4vw,24px);margin-bottom:16px;box-shadow:var(--shadow)}
+.mxwrap .lbl{margin-bottom:14px}
+.mxwrap{overflow:clip}
+.mxscroll{overflow-x:auto;max-width:100%;overscroll-behavior-x:contain}
+table.mx{border-collapse:separate;border-spacing:0;width:100%;font-size:14px}
+.mx th,.mx td{padding:7px 12px;text-align:center;border-bottom:1px dashed var(--line)}
+.mx thead th{font-weight:500;font-size:13px;vertical-align:bottom;border-bottom:1px solid var(--line);padding-bottom:12px}
+.mx thead th:first-child,.mx tbody th{background:var(--surface)}
+.mx tbody th{text-align:start;font-weight:500;white-space:nowrap}
+.mx thead th:first-child{text-align:start;font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.mx tr.gp th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);padding-top:18px;border-bottom:1px solid var(--line);font-weight:500;text-align:start}
+html[data-lang="fa"] .mx tr.gp th,html[data-lang="fa"] .mx thead th:first-child{font-family:var(--body);letter-spacing:0;text-transform:none;font-size:12.5px}
+.mx tbody tr[data-k]{cursor:pointer;transition:background .15s}
+.mx tbody tr[data-k]:hover td{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+.mx tbody tr[data-k]:hover th{background:color-mix(in srgb,var(--accent) 7%,var(--surface))}
+.mx tbody tr.on td{background:color-mix(in srgb,var(--accent) 15%,transparent)}
+.mx tbody tr.on th{background:color-mix(in srgb,var(--accent) 15%,var(--surface));color:var(--accent);font-weight:700}
+.mx .dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--accent);vertical-align:middle}
+.mx td.c .dot{background:var(--gold)}
+.mx thead button{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:3px 13px;cursor:pointer;font-size:12.5px;transition:border-color .2s,color .2s}
+.mx thead button:hover{border-color:var(--accent);color:var(--accent)}
+@media (max-width:560px){table.mx{table-layout:fixed}.mx th,.mx td{padding:6px 3px}.mx thead th:first-child,.mx tbody th{width:40%}.mx tbody th{white-space:normal;font-size:13px;overflow-wrap:anywhere}.mx thead button{padding:3px 5px;font-size:11px;white-space:normal;max-width:100%}.mx thead th{font-size:12px}}
+
+/* previous / next project */
+.pnav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+.pnav button{text-align:start;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;cursor:pointer;display:grid;gap:2px;min-width:0;transition:border-color .2s,transform .2s}
+.pnav button:hover{border-color:var(--accent);transform:translateY(-2px)}
+.pnav .next{text-align:end}
+.pnav small{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.pnav span.t{font-weight:700;font-size:14.5px;line-height:1.4}
+.pnav .prev small::before{content:"← "}.pnav .next small::after{content:" →"}
+[dir="rtl"] .pnav .prev small::before{content:"→ "}[dir="rtl"] .pnav .next small::after{content:" ←"}
+@media (max-width:560px){.pnav{grid-template-columns:1fr}.pnav .next{text-align:start}}
+
+/* contact lead card */
+.ct.lead{grid-column:1/-1;padding:clamp(18px,3vw,28px);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 9%,var(--surface)),var(--surface) 70%)}
+.ct.lead .v{font-size:clamp(18px,3.4vw,32px);font-weight:500;letter-spacing:-.01em;margin:4px 0 6px}
+.acts{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.acts button{margin-top:0!important;align-self:auto!important;padding:6px 16px;font-size:13.5px;border-radius:9px}
+
 /* print: compact two-page A4, light colors, every project expanded */
 @page{size:A4;margin:12mm}
 @media print{
   :root,:root[data-theme="dark"],:root:not([data-theme="light"]){
     --bg:#fff;--surface:#fff;--surface-2:#fff;--fg:#0f1a2e;--muted:#3e4a60;--line:#cfd6d3;--accent:#066a72;--accent-ink:#fff;--gold:#7d500c;--chip:#e9efed;--ai:#4a3cb0;--shadow:none;color-scheme:light}
   html{font-size:12.5px}
-  body{background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{padding-bottom:0!important;background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   html[data-lang="en"] body{line-height:1.45}
   html[data-lang="fa"]{font-size:11.6px}
   html[data-lang="fa"] body{line-height:1.5}
@@ -300,7 +367,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   html[data-lang="fa"] .panel{padding:9px 12px}
   html[data-lang="fa"] section.s{padding-block:8px}
   html[data-lang="fa"] .grp{padding:9px}
-  .nav,.progress,.skip,.hero canvas,.console,.cta,.facts,.tl-wrap,.plist,.map,.legend,.extra,.actions,.skcap,.cp,.toast,footer,.hint,.kicker b,.prog{display:none!important}
+  .nav,.progress,.skip,.tabbar,.totop,.pnav,.band,.mxwrap,.acts,.hero::before,.hero canvas,.console,.cta,.facts,.tl-wrap,.plist,.map,.legend,.extra,.actions,.skcap,.cp,.toast,footer,.hint,.kicker b,.prog{display:none!important}
   .wrap{max-width:none;padding-inline:0}
   .hero{border:0}
   .hero .wrap{display:block;padding-block:0 8px}
@@ -332,6 +399,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .row{padding-block:5px;font-size:12px}
   .contact{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
   .ct{padding:8px 10px;break-inside:avoid}.ct button{display:none}.ct a,.ct .v{font-size:10.5px}
+  .ct.lead{grid-column:auto;padding:8px 10px;background:none}
+  .ct.lead .v{font-size:10.5px;margin:0;font-weight:400}
   a{text-decoration:none}
 }
 </style>
@@ -396,6 +465,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
   </section>
 
+  <div class="band" aria-hidden="true"></div>
+
   <section class="s" id="about">
     <div class="wrap">
       <div class="sh rv"><h2><span class="fa">خلاصه رزومه</span><span class="en">Profile</span></h2></div>
@@ -427,6 +498,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </div>
     </div>
   </section>
+
+  <div class="band" aria-hidden="true"></div>
 
   <section class="s" id="projects">
     <div class="wrap">
@@ -538,33 +611,36 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
   </section>
 
+  <div class="band" aria-hidden="true"></div>
+
   <section class="s" id="skills">
     <div class="wrap">
       <div class="sh rv"><h2><span class="fa">مهارت‌ها</span><span class="en">Skills</span></h2><span class="hint"><span class="fa">روی یک مهارت بزنید تا ببینید کجا استفاده شده</span><span class="en">Select a skill to see where it was used</span></span></div>
+      <div class="mxwrap rv"><p class="lbl"><span class="fa">ماتریس استفاده از مهارت‌ها · یک ردیف یا ستون را انتخاب کنید</span><span class="en">Skills usage matrix · select a row or a column</span></p><div class="mxscroll" id="mx"></div></div>
       <div class="skills rv">
         <div class="grp">
           <h3><span class="fa">برنامه‌نویسی</span><span class="en">Programming</span></h3>
           <div class="chips">
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="got">Java</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="courses">Python</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="library">C</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium">JavaScript</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="got" data-k="java">Java</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="courses" data-k="python">Python</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="library" data-k="c">C</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium" data-k="js">JavaScript</button>
           </div>
         </div>
         <div class="grp">
           <h3><span class="fa">وب</span><span class="en">Web</span></h3>
           <div class="chips">
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium">HTML</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium">CSS</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium">JavaScript</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium">PWA</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium" data-k="html">HTML</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium" data-k="css">CSS</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium" data-k="js">JavaScript</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium" data-k="pwa">PWA</button>
           </div>
         </div>
         <div class="grp">
           <h3><span class="fa">مفاهیم</span><span class="en">Concepts</span></h3>
           <div class="chips">
-            <button class="chip sk fa" type="button" aria-pressed="false" data-uses="got">برنامه‌نویسی شی‌گرا (OOP)</button><button class="chip sk en" type="button" aria-pressed="false" data-uses="got">Object-Oriented Programming (OOP)</button>
-            <button class="chip sk fa" type="button" aria-pressed="false" data-uses="got">الگوهای طراحی (Mediator)</button><button class="chip sk en" type="button" aria-pressed="false" data-uses="got">Design Patterns (Mediator)</button>
+            <button class="chip sk fa" type="button" aria-pressed="false" data-uses="got" data-k="oop">برنامه‌نویسی شی‌گرا (OOP)</button><button class="chip sk en" type="button" aria-pressed="false" data-uses="got" data-k="oop">Object-Oriented Programming (OOP)</button>
+            <button class="chip sk fa" type="button" aria-pressed="false" data-uses="got" data-k="patterns">الگوهای طراحی (Mediator)</button><button class="chip sk en" type="button" aria-pressed="false" data-uses="got" data-k="patterns">Design Patterns (Mediator)</button>
             <span class="chip fa">حل مسئله</span><span class="chip en">Problem solving</span>
             <span class="chip fa">الگوریتم</span><span class="chip en">Algorithms</span>
             <span class="chip fa">ساختمان داده</span><span class="chip en">Data structures</span>
@@ -573,14 +649,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="grp">
           <h3><span class="fa">ابزارها</span><span class="en">Tools</span></h3>
           <div class="chips">
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium courses">Git</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium courses">GitHub</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium">JSON</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium">API Integration</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium">Telegram Bot</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium">AI Integration</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="got">libGDX</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="got">Gradle</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium courses" data-k="git">Git</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium courses" data-k="github">GitHub</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium" data-k="json">JSON</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium" data-k="api">API Integration</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium" data-k="telegram">Telegram Bot</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium" data-k="ai">AI Integration</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="got" data-k="libgdx">libGDX</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="got" data-k="gradle">Gradle</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="library" data-k="fileio">File I/O</button>
           </div>
         </div>
         <div class="grp">
@@ -613,11 +690,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
   </section>
 
+  <div class="band" aria-hidden="true"></div>
+
   <section class="s" id="contact">
     <div class="wrap">
       <div class="sh rv"><h2><span class="fa">تماس</span><span class="en">Contact</span></h2></div>
       <div class="contact rv">
-        <div class="ct spot"><small>Email</small><span class="v" id="mail">m.mat.vakili@gmail.com</span><button type="button" data-copy="#mail"><span class="fa">کپی</span><span class="en">Copy</span></button></div>
+        <div class="ct lead spot"><small>Email</small><span class="v" id="mail">m.mat.vakili@gmail.com</span><div class="acts"><a class="btn primary sm" href="mailto:m.mat.vakili@gmail.com"><span class="fa">ارسال ایمیل</span><span class="en">Send email</span> ↗</a><button type="button" data-copy="#mail"><span class="fa">کپی ایمیل</span><span class="en">Copy email</span></button></div></div>
         <div class="ct spot"><small>GitHub</small><a href="https://github.com/mmatvakili-lgtm" target="_blank" rel="noopener">github.com/mmatvakili-lgtm ↗</a></div>
         <div class="ct spot"><small><span class="fa">تلفن</span><span class="en">Phone</span></small><span class="v" id="tel">+98 933 360 1604</span><button type="button" data-copy="#tel"><span class="fa">کپی</span><span class="en">Copy</span></button></div>
         <div class="ct spot"><small><span class="fa">مکان</span><span class="en">Location</span></small><span class="v loc"><span class="fa">کاشان، اصفهان، ایران</span><span class="en">Kashan, Isfahan, Iran</span></span></div>
@@ -632,6 +711,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <span><span class="fa">دانشگاه کاشان، مهندسی کامپیوتر</span><span class="en">Computer Engineering, University of Kashan</span></span>
   </div>
 </footer>
+
+<nav class="tabbar" aria-label="Sections">
+  <a href="#about" data-sec="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span><span class="fa">خلاصه</span><span class="en">Profile</span></span></a>
+  <a href="#projects" data-sec="projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg><span><span class="fa">پروژه‌ها</span><span class="en">Projects</span></span></a>
+  <a href="#skills" data-sec="skills"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg><span><span class="fa">مهارت‌ها</span><span class="en">Skills</span></span></a>
+  <a href="#contact" data-sec="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><span class="fa">تماس</span><span class="en">Contact</span></span></a>
+</nav>
+<button class="totop" id="totop" type="button" aria-label="Back to top" tabindex="-1"><svg class="ring" viewBox="0 0 46 46" aria-hidden="true"><circle class="trk" cx="23" cy="23" r="20"/><circle class="prg" cx="23" cy="23" r="20" pathLength="100"/></svg><svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <div class="cp" id="cp" hidden>
   <div class="cp-box" role="dialog" aria-modal="true" aria-label="Command menu">
@@ -741,10 +828,10 @@ buildMaps();
 /* skills -> projects */
 var skcap=$('#skcap'),plist=$('#plist'),activeSkill=null;
 var courseLabel=['دوره‌های جادی (مکتب‌خونه)','Jadi courses (Maktabkhooneh)'];
-function clearSkill(){activeSkill=null;$$('.sk').forEach(function(b){b.setAttribute('aria-pressed','false')});plist.classList.remove('filtering');tabs.forEach(function(t){t.classList.remove('match')});skcap.classList.remove('on');skcap.innerHTML='<span class="fa">یک مهارت را انتخاب کنید.</span><span class="en">Select a skill above.</span>'}
+function clearSkill(){activeSkill=null;markRow(null);$$('.sk').forEach(function(b){b.setAttribute('aria-pressed','false')});plist.classList.remove('filtering');tabs.forEach(function(t){t.classList.remove('match')});skcap.classList.remove('on');skcap.innerHTML='<span class="fa">یک مهارت را انتخاب کنید.</span><span class="en">Select a skill above.</span>'}
 $$('.sk').forEach(function(b){b.addEventListener('click',function(){
   if(activeSkill===b){clearSkill();return}
-  clearSkill();activeSkill=b;
+  clearSkill();activeSkill=b;markRow(b.getAttribute('data-k'));
   $$('.sk').forEach(function(o){if(o.textContent===b.textContent)o.setAttribute('aria-pressed','true')});
   var uses=b.getAttribute('data-uses').split(' '),projs=uses.filter(function(u){return u!=='courses'});
   plist.classList.add('filtering');tabs.forEach(function(t){t.classList.toggle('match',projs.indexOf(t.getAttribute('data-p'))>-1)});
@@ -756,10 +843,57 @@ $$('.sk').forEach(function(b){b.addEventListener('click',function(){
 })});
 skcap.addEventListener('click',function(e){var o=e.target.closest('[data-open]'),c=e.target.closest('[data-clear]');if(o)selectProject(o.getAttribute('data-open'),{animate:true,scroll:true});if(c)clearSkill()});
 
+
+/* previous / next project */
+$$('.panel').forEach(function(p,i){
+  var prev=tabs[(i-1+tabs.length)%tabs.length],next=tabs[(i+1)%tabs.length],d=document.createElement('div');d.className='pnav';
+  d.innerHTML='<button type="button" class="prev" data-p="'+prev.getAttribute('data-p')+'"><small><span class="fa">پروژه قبلی</span><span class="en">Previous project</span></small><span class="t">'+$('.ttl',prev).innerHTML+'</span></button><button type="button" class="next" data-p="'+next.getAttribute('data-p')+'"><small><span class="fa">پروژه بعدی</span><span class="en">Next project</span></small><span class="t">'+$('.ttl',next).innerHTML+'</span></button>';
+  d.addEventListener('click',function(e){var b=e.target.closest('button');if(b)selectProject(b.getAttribute('data-p'),{animate:true,scroll:true})});
+  p.appendChild(d);
+});
+
+/* skills usage matrix */
+var MX_COLS=[['elysium',['Elysium','Elysium']],['got',['GOT','GOT']],['library',['کتابخانه','Library']],['courses',['دوره‌ها','Courses']]];
+var MX_ROWS=[
+  ['g',['زبان‌ها','Languages']],
+  ['java',['Java','Java'],'got'],['python',['Python','Python'],'courses'],['c',['C','C'],'library'],['js',['JavaScript','JavaScript'],'elysium'],
+  ['g',['وب','Web']],
+  ['html',['HTML','HTML'],'elysium'],['css',['CSS','CSS'],'elysium'],['pwa',['PWA','PWA'],'elysium'],
+  ['g',['مفاهیم','Concepts']],
+  ['oop',['شی‌گرا (OOP)','OOP'],'got'],['patterns',['الگوهای طراحی','Design patterns'],'got'],
+  ['g',['ابزارها و چارچوب‌ها','Tools & frameworks']],
+  ['libgdx',['libGDX','libGDX'],'got'],['gradle',['Gradle','Gradle'],'got'],['git',['Git','Git'],'elysium courses'],['github',['GitHub','GitHub'],'elysium courses'],
+  ['json',['JSON','JSON'],'elysium'],['api',['API','API integration'],'elysium'],['telegram',['Telegram Bot','Telegram Bot'],'elysium'],['ai',['هوش مصنوعی','AI integration'],'elysium'],
+  ['fileio',['ورودی/خروجی فایل','File I/O'],'library']
+];
+function buildMatrix(){
+  var h='<table class="mx"><thead><tr><th scope="col">'+bi(['مهارت','Skill'])+'</th>';
+  MX_COLS.forEach(function(c){h+='<th scope="col">'+(c[0]==='courses'?'<span>'+bi(c[1])+'</span>':'<button type="button" data-open="'+c[0]+'" aria-label="'+esc(c[1][1])+'">'+bi(c[1])+'</button>')+'</th>'});
+  h+='</tr></thead><tbody>';
+  MX_ROWS.forEach(function(r){
+    if(r[0]==='g'){h+='<tr class="gp"><th colspan="5" scope="colgroup">'+bi(r[1])+'</th></tr>';return}
+    var uses=r[2].split(' ');
+    h+='<tr data-k="'+r[0]+'"><th scope="row">'+bi(r[1])+'</th>';
+    MX_COLS.forEach(function(c){var y=uses.indexOf(c[0])>-1;h+='<td class="'+(c[0]==='courses'?'c':'p')+'">'+(y?'<i class="dot"></i><span class="sr-only">&#10003;</span>':'')+'</td>'});
+    h+='</tr>';
+  });
+  $('#mx').innerHTML=h+'</tbody></table>';
+}
+function markRow(k){$$('#mx tr[data-k]').forEach(function(tr){tr.classList.toggle('on',!!k&&tr.getAttribute('data-k')===k)})}
+buildMatrix();
+$('#mx').addEventListener('click',function(e){
+  var o=e.target.closest('[data-open]');if(o){selectProject(o.getAttribute('data-open'),{animate:true,scroll:true});return}
+  var tr=e.target.closest('tr[data-k]');if(!tr)return;
+  if(tr.classList.contains('on')){clearSkill();return}
+  var chip=$$('.sk[data-k="'+tr.getAttribute('data-k')+'"]').filter(function(c){return c.offsetParent!==null})[0];
+  if(chip)chip.click();
+});
+
 /* scrollspy, progress, reveal, counters, spotlight */
-var nav=$('#nav'),bar=$('#progress'),links=$$('.links a'),tick=false;
-function onScroll(){if(tick)return;tick=true;requestAnimationFrame(function(){tick=false;var h=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')';nav.classList.toggle('scrolled',scrollY>8)})}
+var nav=$('#nav'),bar=$('#progress'),links=$$('[data-sec]'),tick=false,tt=$('#totop'),prg=$('.prg',tt);
+function onScroll(){if(tick)return;tick=true;requestAnimationFrame(function(){tick=false;if(innerHeight+scrollY>=document.documentElement.scrollHeight-4){links.forEach(function(a){a.setAttribute('aria-current',a.getAttribute('data-sec')==='contact'?'true':'false')})}var h=document.documentElement.scrollHeight-innerHeight;var p=h>0?Math.min(1,scrollY/h):0;bar.style.transform='scaleX('+p+')';prg.style.strokeDashoffset=100-p*100;var sh=scrollY>500;tt.classList.toggle('show',sh);tt.tabIndex=sh?0:-1;nav.classList.toggle('scrolled',scrollY>8)})}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
+tt.addEventListener('click',function(){scrollTo({top:0,behavior:reduce?'auto':'smooth'})});
 if('IntersectionObserver' in window){
   var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.setAttribute('aria-current',a.getAttribute('data-sec')===e.target.id?'true':'false')})}})},{rootMargin:'-40% 0px -55% 0px'});
   $$('main section.s').forEach(function(s){spy.observe(s)});
