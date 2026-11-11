@@ -312,6 +312,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 /* skills usage matrix */
 .mxwrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(14px,2.4vw,24px);margin-bottom:16px;box-shadow:var(--shadow)}
 .mxwrap .lbl{margin-bottom:14px}
+.mxnote{font-size:12px;color:var(--muted);margin:-6px 0 12px;line-height:1.6}
 .mxwrap{overflow:clip}
 .mxscroll{overflow-x:auto;max-width:100%;overscroll-behavior-x:contain}
 table.mx{border-collapse:separate;border-spacing:0;width:100%;font-size:14px}
@@ -473,7 +474,7 @@ html[data-lang="fa"] .mx tr.gp th,html[data-lang="fa"] .mx thead th:first-child{
       <div class="split rv">
         <div>
           <p class="fa">دانشجوی مهندسی کامپیوتر دانشگاه کاشان با تجربه عملی در توسعه نرم‌افزار و برنامه‌نویسی پروژه‌محور. دارای تجربه در زبان‌های Java، Python و C و توسعه وب با HTML، CSS و JavaScript. توسعه یک اپلیکیشن وب پیشرو (PWA) تعاملی و قابل نصب، متصل به ربات تلگرام و دارای چت‌بات و پیشنهاد هوشمند مبتنی بر هوش مصنوعی، با کار بر روی API، JSON، تعامل‌های سمت کاربر و مدیریت داده. در حال حاضر مشغول گسترش دانش خود در زمینه Python، یادگیری ماشین و توسعه بک‌اند.</p>
-          <p class="en">Computer Engineering student at the University of Kashan with hands-on experience in software development and project-based programming. Experienced with Java, Python, C, and web development using HTML, CSS, and JavaScript. Developed an interactive, installable Progressive Web App (PWA) integrated with a Telegram Bot and featuring an AI chatbot and smart recommendations, working with APIs, JSON, client-side interactions, and data management. Currently expanding knowledge of Python, Machine Learning, and backend development.</p>
+          <p class="en">Computer Engineering student at the University of Kashan with hands-on experience in software development and project-based programming. Hands-on project experience with Java, Python, C, and web development using HTML, CSS, and JavaScript. Developed an interactive, installable Progressive Web App (PWA) integrated with a Telegram Bot and featuring an AI chatbot and smart recommendations, working with APIs, JSON, client-side interactions, and data management. Currently expanding knowledge of Python, Machine Learning, and backend development.</p>
         </div>
         <div>
           <div class="edu">
@@ -493,7 +494,8 @@ html[data-lang="fa"] .mx tr.gp th,html[data-lang="fa"] .mx thead th:first-child{
           <li><a href="#about"><span class="d"><span class="fa">اکتبر ۲۰۲۴</span><span class="en">Oct 2024</span></span><span class="t"><span class="fa">آغاز کارشناسی مهندسی کامپیوتر</span><span class="en">Started B.Sc. Computer Engineering</span></span><span class="s2"><span class="fa">دانشگاه کاشان</span><span class="en">University of Kashan</span></span></a></li>
           <li><a href="#projects" data-go="library"><span class="d"><span class="fa">ژوئن ۲۰۲۵</span><span class="en">Jun 2025</span></span><span class="t"><span class="fa">سیستم مدیریت کتابخانه</span><span class="en">Library Management System</span></span><span class="s2">C · File I/O</span></a></li>
           <li><a href="#projects" data-go="got"><span class="d"><span class="fa">سپتامبر ۲۰۲۵</span><span class="en">Sep 2025</span></span><span class="t"><span class="fa">بازی استراتژیک Game of Thrones</span><span class="en">Game of Thrones Strategy Game</span></span><span class="s2">Java · libGDX</span></a></li>
-          <li class="now"><a href="#skills"><span class="d"><span class="fa">اکنون</span><span class="en">Now</span></span><span class="t"><span class="fa">یادگیری ماشین با Python</span><span class="en">Machine Learning with Python</span></span><span class="s2"><span class="fa">دوره جادی، در حال انجام</span><span class="en">Jadi course, in progress</span></span></a></li>
+          <li><a href="#projects" data-go="elysium"><span class="d"><span class="fa">اکتبر ۲۰۲۶</span><span class="en">Oct 2026</span></span><span class="t"><span class="fa">تکمیل پروژه Elysium Universe</span><span class="en">Completed Elysium Universe</span></span><span class="s2"><span class="fa">PWA · Python · Telegram Bot</span><span class="en">PWA · Python · Telegram Bot</span></span></a></li>
+          <li class="now"><a href="#skills"><span class="d"><span class="fa">نوامبر ۲۰۲۶</span><span class="en">Nov 2026</span></span><span class="t"><span class="fa">یادگیری ماشین با Python</span><span class="en">Machine Learning with Python</span></span><span class="s2"><span class="fa">دوره جادی، در حال انجام</span><span class="en">Jadi course, in progress</span></span></a></li>
         </ol>
       </div>
     </div>
@@ -506,7 +508,7 @@ html[data-lang="fa"] .mx tr.gp th,html[data-lang="fa"] .mx thead th:first-child{
       <div class="sh rv"><h2><span class="fa">پروژه‌ها</span><span class="en">Projects</span></h2><span class="hint"><span class="fa">یک پروژه را انتخاب کنید</span><span class="en">Select a project to explore</span></span></div>
       <div class="explorer rv">
         <div class="plist" id="plist" role="tablist" aria-orientation="vertical" aria-label="Projects">
-          <button class="ptab" role="tab" id="t-elysium" aria-controls="p-elysium" data-p="elysium"><span class="ttl">Elysium Universe</span><span class="sub"><span class="fa">PWA · پروژه شخصی</span><span class="en">PWA · Personal</span></span></button>
+          <button class="ptab" role="tab" id="t-elysium" aria-controls="p-elysium" data-p="elysium"><span class="ttl">Elysium Universe</span><span class="sub"><span class="fa">PWA · پروژه شخصی · تکمیل‌شده در اکتبر ۲۰۲۶</span><span class="en">PWA · Personal · Completed Oct 2026</span></span></button>
           <button class="ptab" role="tab" id="t-got" aria-controls="p-got" data-p="got"><span class="ttl"><span class="fa">بازی استراتژیک Game of Thrones</span><span class="en">Game of Thrones Strategy Game</span></span><span class="sub"><span class="fa">بازی دسکتاپ · سپتامبر ۲۰۲۵</span><span class="en">Desktop game · Sep 2025</span></span></button>
           <button class="ptab" role="tab" id="t-library" aria-controls="p-library" data-p="library"><span class="ttl"><span class="fa">سیستم مدیریت کتابخانه</span><span class="en">Library Management System</span></span><span class="sub"><span class="fa">دانشگاهی · ژوئن ۲۰۲۵</span><span class="en">University · Jun 2025</span></span></button>
         </div>
@@ -514,11 +516,11 @@ html[data-lang="fa"] .mx tr.gp th,html[data-lang="fa"] .mx thead th:first-child{
         <div class="panels">
           <article class="panel spot" id="p-elysium" role="tabpanel" aria-labelledby="t-elysium" data-p="elysium">
             <div class="phead">
-              <div class="meta mono"><span class="fa">اپلیکیشن وب پیشرو (PWA) · پروژه شخصی</span><span class="en">PROGRESSIVE WEB APP (PWA) · PERSONAL PROJECT</span></div>
+              <div class="meta mono"><span class="fa">اپلیکیشن وب پیشرو (PWA) · پروژه شخصی · تکمیل‌شده: اکتبر ۲۰۲۶</span><span class="en">PROGRESSIVE WEB APP (PWA) · PERSONAL PROJECT · COMPLETED: OCT 2026</span></div>
               <h3>Elysium Universe</h3>
               <div class="actions"><a class="btn primary sm" href="https://elysium-uni.netlify.app" target="_blank" rel="noopener"><span class="fa">مشاهده سایت زنده</span><span class="en">Open live app</span> ↗</a></div>
               <div class="visit mono">elysium-uni.netlify.app ↗</div>
-              <div class="chips"><span class="chip">PWA</span><span class="chip">AI Chatbot</span><span class="chip">Smart Recommendations</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">JSON</span><span class="chip">Telegram Bot</span><span class="chip">Git / GitHub</span></div>
+              <div class="chips"><span class="chip">PWA</span><span class="chip">Python</span><span class="chip">AI Chatbot</span><span class="chip">Smart Recommendations</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">JSON</span><span class="chip">Telegram Bot</span><span class="chip">Git / GitHub</span></div>
             </div>
             <div class="pgrid">
               <div>
@@ -527,14 +529,14 @@ html[data-lang="fa"] .mx tr.gp th,html[data-lang="fa"] .mx thead th:first-child{
                   <li>توسعه یک اپلیکیشن وب پیشرو (PWA) تعاملی با چندین بخش و قابلیت مستقل، قابل نصب روی دستگاه کاربر و قابل استفاده مانند یک اپلیکیشن بومی.</li>
                   <li>پیاده‌سازی احراز هویت کاربر، مدیریت پروفایل، نامه‌ها، خاطرات، موسیقی، رویدادها، شمارنده‌های معکوس و محتوای تعاملی.</li>
                   <li>ایجاد تعامل‌های پویا سمت کاربر، استفاده از Local Storage، ارسال درخواست‌های API و به‌روزرسانی رابط کاربری با JavaScript.</li>
-                  <li>یکپارچه‌سازی برنامه با ربات تلگرام و کار با داده‌های مبتنی بر JSON و ارتباط از طریق API.</li>
+                  <li>توسعه بخش بک‌اند و ربات تلگرام با Python و اتصال آن‌ها به اپلیکیشن از طریق API و داده‌های JSON.</li>
                   <li>افزودن قابلیت‌های هوش مصنوعی (AI) شامل چت‌بات و سیستم پیشنهاد هوشمند به اپلیکیشن.</li>
                 </ul>
                 <ul class="hl en">
                   <li>Developed an interactive Progressive Web App (PWA) with multiple independent sections and features, installable on the user's device and usable like a native application.</li>
                   <li>Implemented user authentication, profile management, letters, memories, music, events, countdowns, and interactive content.</li>
                   <li>Built dynamic client-side interactions, local storage usage, API requests, and UI updates with JavaScript.</li>
-                  <li>Integrated the application with a Telegram Bot and worked with JSON-based data and API communication.</li>
+                  <li>Developed the backend and Telegram Bot with Python, connecting them to the application through APIs and JSON data.</li>
                   <li>Added artificial intelligence (AI) capabilities to the application, including a chatbot and smart recommendations.</li>
                 </ul>
               </div>
@@ -559,7 +561,7 @@ html[data-lang="fa"] .mx tr.gp th,html[data-lang="fa"] .mx thead th:first-child{
                 <p class="lbl"><span class="fa">نکات کلیدی</span><span class="en">Highlights</span></p>
                 <ul class="hl fa">
                   <li>توسعه بازی استراتژیک دسکتاپ با زبان Java و موتور گرافیکی libGDX بر بستر معماری چندماژولار Gradle.</li>
-                  <li>پیاده‌سازی الگوی طراحی Mediator برای تفکیک کامل لایه‌های منطقی بازی، رابط کاربری و رندر تایل‌ها.</li>
+                  <li>پیاده‌سازی الگوی طراحی Mediator برای تفکیک لایه‌های منطق بازی، رابط کاربری و رندر تایل‌ها.</li>
                   <li>طراحی سیستم جامع مدیریت منابع، قلمروها، بازار تبادل، آموزش ارتش و حملات فصلی وایت‌واکرها.</li>
                   <li>پیاده‌سازی سیستم ثبت وقایع نبرد و بازپخش زنده رویدادهای جنگی (Battle Replay).</li>
                 </ul>
@@ -616,13 +618,13 @@ html[data-lang="fa"] .mx tr.gp th,html[data-lang="fa"] .mx thead th:first-child{
   <section class="s" id="skills">
     <div class="wrap">
       <div class="sh rv"><h2><span class="fa">مهارت‌ها</span><span class="en">Skills</span></h2><span class="hint"><span class="fa">روی یک مهارت بزنید تا ببینید کجا استفاده شده</span><span class="en">Select a skill to see where it was used</span></span></div>
-      <div class="mxwrap rv"><p class="lbl"><span class="fa">ماتریس استفاده از مهارت‌ها · یک ردیف یا ستون را انتخاب کنید</span><span class="en">Skills usage matrix · select a row or a column</span></p><div class="mxscroll" id="mx"></div></div>
+      <div class="mxwrap rv"><p class="lbl"><span class="fa">ماتریس استفاده از مهارت‌ها · مهارت را انتخاب کنید یا روی نام پروژه بزنید</span><span class="en">Skills usage matrix · select a skill or open a project</span></p><p class="mxnote"><span class="fa">نقطه فقط نشان می‌دهد مهارت در آن پروژه یا دوره استفاده شده است؛ سطح تسلط را نشان نمی‌دهد.</span><span class="en">A dot indicates that a skill was used in a project or course; it does not represent proficiency level.</span></p><div class="mxscroll" id="mx"></div></div>
       <div class="skills rv">
         <div class="grp">
           <h3><span class="fa">برنامه‌نویسی</span><span class="en">Programming</span></h3>
           <div class="chips">
             <button class="chip sk" type="button" aria-pressed="false" data-uses="got" data-k="java">Java</button>
-            <button class="chip sk" type="button" aria-pressed="false" data-uses="courses" data-k="python">Python</button>
+            <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium courses" data-k="python">Python</button>
             <button class="chip sk" type="button" aria-pressed="false" data-uses="library" data-k="c">C</button>
             <button class="chip sk" type="button" aria-pressed="false" data-uses="elysium" data-k="js">JavaScript</button>
           </div>
@@ -856,7 +858,7 @@ $$('.panel').forEach(function(p,i){
 var MX_COLS=[['elysium',['Elysium','Elysium']],['got',['GOT','GOT']],['library',['کتابخانه','Library']],['courses',['دوره‌ها','Courses']]];
 var MX_ROWS=[
   ['g',['زبان‌ها','Languages']],
-  ['java',['Java','Java'],'got'],['python',['Python','Python'],'courses'],['c',['C','C'],'library'],['js',['JavaScript','JavaScript'],'elysium'],
+  ['java',['Java','Java'],'got'],['python',['Python','Python'],'elysium courses'],['c',['C','C'],'library'],['js',['JavaScript','JavaScript'],'elysium'],
   ['g',['وب','Web']],
   ['html',['HTML','HTML'],'elysium'],['css',['CSS','CSS'],'elysium'],['pwa',['PWA','PWA'],'elysium'],
   ['g',['مفاهیم','Concepts']],
